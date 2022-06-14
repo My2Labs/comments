@@ -1,50 +1,27 @@
 package com.comment.comment.comment;
 
-import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.Column;
 
-@Service
+import lombok.Data;
+
+@Entity
+@Data
+@Table(name = "comment")
 public class Comment {
-    @Autowired
-    private CommentRepository commentRepository;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-    public Iterable<Comment> list() {
-        return commentRepository.findAll();
-    }
+    @Column(name = "name")
+    private String name;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "comment")
+    private String comment;
 
-    public Optional<Comment> findById(Long id) {
-        return commentRepository.findById(id);
-    }
-
-    public Comment create(Comment comment) {
-        return commentRepository.save(comment);
-    }
-
-    public Optional<Comment> update(Comment comment) {
-        Optional<Comment> foundComment = commentRepository.findById(comment.getId());
-        if (foundComment.isPresent()) {
-            Comment updatedComment = foundComment.get();
-            updatedComment.setSomeProperty(comment.getSomeProperty());
-            commentRepository.save(updatedComment);
-            return Optional.of(updatedComment);
-        } else {
-            return Optional.empty();
-        }
-    }
-
-    private void setSomeProperty(Object someProperty) {
-    }
-
-    private Object getSomeProperty() {
-        return null;
-    }
-
-    private Long getId() {
-        return null;
-    }
-
-    public void deleteById(Long id) {
-        commentRepository.deleteById(id);
-    }
 }
