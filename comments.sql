@@ -7,4 +7,4 @@ CREATE TABLE comments(
   comment TEXT
 );
 
-INSERT INTO comments(name, email, comment) VALUES ('Test Name', 'Test Email', 'Test Comment');
+INSERT INTO comments(name, email, comment) VALUES ('Test Name', 'Test Email', 'Test Comment.');
