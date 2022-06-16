@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS comments;
 
 CREATE TABLE comments(
-  id SERIAL PRIMARY KEY,
+  id int NOT NULL AUTO_INCREMENT,
   name TEXT,
   email TEXT,
   comment TEXT
